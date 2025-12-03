@@ -1,5 +1,17 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+  "routes": [
+    {
+      "src": "/yandex_4508d27630abe56a.html",
+      "headers": { "Content-Type": "text/html; charset=utf-8" }
+    },
+    {
+      "src": "/google-site-verification=.*\\.html",
+      "headers": { "Content-Type": "text/html; charset=utf-8" }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 200
+    }
   ]
 }
