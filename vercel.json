@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "src": "/yandex_[a-f0-9]{16}\\.html",
+      "src": "/yandex_4508d27630abe56a.html",
       "headers": { "Content-Type": "text/html; charset=utf-8" }
     },
     {
