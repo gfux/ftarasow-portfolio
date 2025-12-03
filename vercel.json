@@ -1,12 +1,16 @@
 {
   "routes": [
     {
-      "src": "/yandex_4508d27630abe56a.html",
+      "src": "/yandex_[a-f0-9]{16}\\.html",
       "headers": { "Content-Type": "text/html; charset=utf-8" }
     },
     {
       "src": "/google-site-verification=.*\\.html",
       "headers": { "Content-Type": "text/html; charset=utf-8" }
+    },
+    {
+      "src": "/static/(.*)",
+      "headers": { "Cache-Control": "public, max-age=31536000, immutable" }
     },
     {
       "src": "/(.*)",
