@@ -99,7 +99,6 @@ export const projectDetails = [
 
 export const contactDetails = {
   email: "ft-2@bk.ru",
-  phone: "+7 (903) 698-74-09",
 };
 
 export const personalDetails = {
