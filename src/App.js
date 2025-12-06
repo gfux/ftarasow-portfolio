@@ -8,11 +8,13 @@ import Contact from "./Pages/Contact";
 import Projects from "./Pages/Projects";
 import Technologies from "./Pages/Technologies";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   return (
     <>
       <Analytics /> {/* ← ВНЕ Router */}
+      <SpeedInsights />
       <Router>
         <Header />
         <Routes>
