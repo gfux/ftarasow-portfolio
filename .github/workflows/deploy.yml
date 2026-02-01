@@ -1,17 +1,22 @@
-name: Build and Deploy to gh-pages
+name: Build and Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '18'
@@ -23,11 +28,17 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Deploy to gh-pages branch
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           publish_branch: gh-pages
           force_orphan: true
-          cname: ru.ftarasow.ru  # Опционально для поддомена
+          # cname: ru.ftarasow.ru  # Закомментируйте пока
