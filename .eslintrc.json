@@ -1,0 +1,15 @@
+
+{
+  "extends": [ "react-app" ],
+  "rules": {
+    "no-regex-spaces": "warn",
+    "no-unused-vars": "warn",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": [
+    "build/",
+    "dist/",
+    "node_modules/"
+  ]
+}
