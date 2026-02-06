@@ -26,7 +26,7 @@ export const socialMediaUrl = {
 
 export const workDetails = [
   {
-    Position: "Студент веб-разработчик",
+    Position: "Веб-разработчик",
     Company: "Свободный фриланс",
     Location: "Москва, Россия",
     Type: "Freelance",
