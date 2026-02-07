@@ -1,1 +1,9 @@
 /* /index.html 200
+
+# Редирект всех версий на ru.ftarasow.ru
+ftarasow.ru/* https://ru.ftarasow.ru/:splat 301
+www.ftarasow.ru/* https://ru.ftarasow.ru/:splat 301
+http://ftarasow.ru/* https://ru.ftarasow.ru/:splat 301
+http://www.ftarasow.ru/* https://ru.ftarasow.ru/:splat 301
+https://ftarasow.ru/* https://ru.ftarasow.ru/:splat 301
+https://www.ftarasow.ru/* https://ru.ftarasow.ru/:splat 301
