@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'; 
-import { BrowserRouter } from 'react-router-dom'; // <-- меняем на 
+import { BrowserRouter } from 'react-router-dom'; // ← используем 
 BrowserRouter 
 import App from './App'; 
 import './index.css'; 
@@ -10,4 +10,4 @@ root.render(
 <App /> 
 </BrowserRouter> 
 </React.StrictMode> 
-); 
+);
