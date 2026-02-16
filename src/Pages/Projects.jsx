@@ -5,6 +5,7 @@ import Project from "../Components/Project";
 import { projectsWithWeather } from "../Details";
 import WeatherProjectCard from "../Components/WeatherProjectCard";
 import VisitorCounter from "../Components/VisitorCounter";
+import TemplateMatrix from '../Components/TemplateMatrix';
 
 function Projects() {
   return (
@@ -62,6 +63,9 @@ function Projects() {
           </div>
         </div>
 
+        {/* ✅ ГАЛЕРЕЯ МАКЕТОВ — ТЕПЕРЬ ЗДЕСЬ, ПОСЛЕ СЕТКИ */}
+         <TemplateMatrix /> 
+
         {/* Остальные проекты */}
         {projectsWithWeather.filter(p => p.title !== "Интерактивный калькулятор").length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
@@ -69,7 +73,7 @@ function Projects() {
               .filter(item => item.title !== "Интерактивный калькулятор")
               .map((item, index) => {
                 if (item.type === "weather") return null;
-                return (
+                return (                
                   <Project
                     key={index}
                     title={item.title}
