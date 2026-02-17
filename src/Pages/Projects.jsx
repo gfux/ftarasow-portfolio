@@ -5,7 +5,7 @@ import Project from "../Components/Project";
 import { projectsWithWeather } from "../Details";
 import WeatherProjectCard from "../Components/WeatherProjectCard";
 import VisitorCounter from "../Components/VisitorCounter";
-import TemplateMatrix from '../Components/TemplateMatrix';
+import TemplateGallery from '../Components/TemplateGallery';
 
 function Projects() {
   return (
@@ -64,7 +64,7 @@ function Projects() {
         </div>
 
         {/* ✅ ГАЛЕРЕЯ МАКЕТОВ — ТЕПЕРЬ ЗДЕСЬ, ПОСЛЕ СЕТКИ */}
-         <TemplateMatrix /> 
+          <TemplateGallery />
 
         {/* Остальные проекты */}
         {projectsWithWeather.filter(p => p.title !== "Интерактивный калькулятор").length > 0 && (
