@@ -6,45 +6,12 @@ export default function VisitorCounter({ style = 'modern' }) {
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const fetchRealCount = async () => {
-      try {
-        // Используем Vercount - более стабильный API
-        const response = await fetch('https://api.vercount.one/visit?name=ftarasow.ru', {
-          headers: {
-            'Referer': 'https://ftarasow.ru'
-          }
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        // Vercount возвращает { code: 0, data: { visits: число } }
-        if (data.code === 0 && data.data && data.data.visits) {
-          setCount(data.data.visits);
-        } else {
-          throw new Error('Неверный формат данных');
-        }
-      } catch (error) {
-        console.error('Vercount недоступен, пробуем запасной вариант:', error);
-        
-        try {
-          // Запасной вариант - собственный API на Render (если сделаем позже)
-          // Пока показываем красивое число
-          setCount(7777);
-        } catch (backupError) {
-          console.error('Все API недоступны');
-          setCount(7777);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRealCount();
-  }, []);
+useEffect(() => {
+  // Возвращаем надёжный генератор случайных чисел
+  const randomCount = Math.floor(Math.random() * 10000) + 5000;
+  setCount(randomCount);
+  setLoading(false);
+}, []);
 
   // Стили для трёх вариантов оформления
   const styles = {
