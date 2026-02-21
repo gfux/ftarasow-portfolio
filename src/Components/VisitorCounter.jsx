@@ -1,3 +1,4 @@
+// VisitorCounter.js
 import { useState, useEffect } from 'react';
 
 export default function VisitorCounter({ style = 'modern' }) {
@@ -5,15 +6,38 @@ export default function VisitorCounter({ style = 'modern' }) {
   const [loading, setLoading] = useState(true);
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [hasIncremented, setHasIncremented] = useState(false);
 
-useEffect(() => {
-  // Возвращаем надёжный генератор случайных чисел
-  const randomCount = Math.floor(Math.random() * 10000) + 5000;
-  setCount(randomCount);
-  setLoading(false);
-}, []);
+  useEffect(() => {
+    const initCounter = async () => {
+      // Защита от повторного увеличения
+      if (hasIncremented) return;
+      
+      try {
+        const incrementRes = await fetch('http://localhost:3001/api/increment-counter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        });
 
-  // Стили для трёх вариантов оформления
+        if (!incrementRes.ok) {
+          throw new Error(`HTTP error! status: ${incrementRes.status}`);
+        }
+
+        const incrementData = await incrementRes.json();
+        setCount(incrementData.count);
+        setHasIncremented(true);
+      } catch (err) {
+        console.error('Error with visitor counter:', err);
+        setCount(7777); // Запасной вариант
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initCounter();
+  }, [hasIncremented]);
+
+  // Стили (оставляем как у тебя)
   const styles = {
     simple: {
       container: 'text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg',
@@ -34,7 +58,6 @@ useEffect(() => {
 
   const currentStyle = styles[style] || styles.modern;
 
-  // Функция для генерации кода для вставки на другие сайты
   const generateEmbedCode = () => {
     return `<!-- Счётчик от Фёдора Тарасова - ftarasow.ru -->
 <div id="ft-counter-${style}" class="ft-counter-${style}">
@@ -51,7 +74,6 @@ useEffect(() => {
 </div>`;
   };
 
-  // Эффект для сброса сообщения "Скопировано!" через 2 секунды
   useEffect(() => {
     if (copied) {
       const timer = setTimeout(() => setCopied(false), 2000);
@@ -66,7 +88,6 @@ useEffect(() => {
 
   return (
     <div className="space-y-4">
-      {/* Сам счётчик */}
       <div className={currentStyle.container}>
         {loading ? (
           <div className="text-center py-8">
@@ -75,17 +96,12 @@ useEffect(() => {
           </div>
         ) : (
           <>
-            <div className={currentStyle.count}>
-              {count.toLocaleString()}
-            </div>
-            <div className={currentStyle.label}>
-              посетителей сайта
-            </div>
+            <div className={currentStyle.count}>{count.toLocaleString()}</div>
+            <div className={currentStyle.label}>посетителей сайта</div>
           </>
         )}
       </div>
 
-      {/* Переключатель стилей (для демо) */}
       <div className="flex gap-2 justify-center text-xs">
         <button
           onClick={() => setShowCode(false)}
@@ -95,7 +111,6 @@ useEffect(() => {
         </button>
       </div>
 
-      {/* Кнопка "Получить код" */}
       <button
         onClick={() => setShowCode(!showCode)}
         className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -103,7 +118,6 @@ useEffect(() => {
         {showCode ? 'Скрыть код' : '📋 Получить код для своего сайта'}
       </button>
 
-      {/* Блок с кодом для вставки */}
       {showCode && (
         <div className="bg-gray-900 text-white p-4 rounded-lg text-sm font-mono overflow-x-auto">
           <pre className="whitespace-pre-wrap break-all">{generateEmbedCode()}</pre>
