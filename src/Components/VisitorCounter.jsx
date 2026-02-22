@@ -13,11 +13,11 @@ export default function VisitorCounter({ style = 'modern' }) {
       // Защита от повторного увеличения
       if (hasIncremented) return;
       
-      try {
-        const incrementRes = await fetch('http://localhost:3001/api/increment-counter', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-        });
+  try {
+  const incrementRes = await fetch('https://ftarasow-api.onrender.com/api/increment-counter', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    });
 
         if (!incrementRes.ok) {
           throw new Error(`HTTP error! status: ${incrementRes.status}`);
