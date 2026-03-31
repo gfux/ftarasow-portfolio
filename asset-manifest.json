@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6b2588f5.css",
+    "main.js": "/static/js/main.efff91ea.js",
+    "static/media/ftarasow.ru.png": "/static/media/ftarasow.ru.e2dc04f7610a4c35c55a.png",
+    "static/media/fedor-character.png": "/static/media/fedor-character.ec21da594c36c45f8b5c.png",
+    "static/media/profile.png": "/static/media/profile.69e32e105a401484b4ca.png",
+    "static/media/logo2.svg": "/static/media/logo2.8748cd4b53ed338faabde58af993f30a.svg",
+    "index.html": "/index.html",
+    "main.6b2588f5.css.map": "/static/css/main.6b2588f5.css.map",
+    "main.efff91ea.js.map": "/static/js/main.efff91ea.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6b2588f5.css",
+    "static/js/main.efff91ea.js"
+  ]
+}
